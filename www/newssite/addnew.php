@@ -3,11 +3,11 @@ session_start();
 
 require __DIR__ . '/function/add.php';
 
-$res = newsUpload();
+$ret = newsUpload();
 
 require __DIR__ . '/models/news.php';
 
-if(false != $res){
+if(false != $ret){
    // var_dump($_POST);
     if(addNew()){
         $_SESSION['error'] = 'Новость успешно добавлена!';
@@ -19,5 +19,6 @@ if(false != $res){
         exit;
     }
 }
+
 include __DIR__ . '/views/form_add.php';
 
