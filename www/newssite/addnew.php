@@ -7,9 +7,9 @@ $ret = newsUpload();
 
 require __DIR__ . '/models/news.php';
 
-if(false != $ret){
+if(false !== $ret){
    // var_dump($_POST);
-    if(addNew()){
+    if(false !== addNew()){
         $_SESSION['error'] = 'Новость успешно добавлена!';
         header('Location: /newssite/addnew.php');
         exit;

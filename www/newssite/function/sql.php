@@ -17,12 +17,12 @@ class Sql{
     public function insert_to_DB($table_name, $row1, $row2, $row3, $value1, $value2, $value3)
     {
         $sql = "INSERT INTO $table_name ($row1, $row2, $row3) VALUES ('$value1','$value2', '$value3')";
-        mysql_query($sql);
+        return $res = mysql_query($sql);
     }
     public function update_DB($table_name, $row, $insert_vlaue, $id)
     {
         $sql = "UPDATE $table_name SET $row=$insert_vlaue WHERE id=$id";
-        mysql_query($sql);
+        return $res = mysql_query($sql);
     }
     public function get_from_DB($row, $table_name, $sort_by='', $sort_value='', $if_row='', $if_row_value='')
     {

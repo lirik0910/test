@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../function/sql.php';
 
-require __DIR__ . '/../clases/clases.php';
+require __DIR__ . '/../classes/classes.php';
 
 function getNews()
 {
