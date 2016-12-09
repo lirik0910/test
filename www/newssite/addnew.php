@@ -1,15 +1,16 @@
 <?php
 session_start();
 
-require __DIR__ . '/function/add.php';
-
-$ret = newsUpload();
-
 require __DIR__ . '/models/news.php';
 
-if(false !== $ret){
-   // var_dump($_POST);
-    if(false !== addNew()){
+$add = new News();
+$inspect = $add->inspect_post($_POST['title'], $_POST['descript'], $_POST['date']);
+
+//var_dump($inspect);
+
+if(false !== $inspect){
+    $add_new = $add->add_news($_POST['title'], $_POST['descript'], $_POST['date']);
+    if(false !== $add_new){
         $_SESSION['error'] = 'Новость успешно добавлена!';
         header('Location: /newssite/addnew.php');
         exit;

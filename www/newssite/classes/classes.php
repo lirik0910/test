@@ -1,18 +1,26 @@
 <?php
 
-abstract class Article{
-    public $title;
-    public $descript;
-    public $date;
-}
-
-class News extends Article{
-    public function get_news($res)
+class Sql{
+    public function __construct()
     {
-        $data = [];
-        while (false !== $row = mysql_fetch_assoc($res)){
-            $data[] = $row;
+        mysql_connect('localhost', 'root', '');
+        mysql_select_db('test');
+    }
+    public function put_to_DB($query, $class='stdClass')
+    {
+        return $res = mysql_query($query);
+    }
+    public function get_from_DB($query, $class='stdClass')
+    {
+        $res = mysql_query($query);
+        //var_dump($res);
+        if(false === $res){
+            return false;
         }
-        return $data;
+        $ret = [];
+        while($row = mysql_fetch_object($res)){
+            $ret[] = $row;
+        }
+        return $ret;
     }
 }
