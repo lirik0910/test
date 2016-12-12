@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@ session_start();
 }  ?>
 <br>
 <div class="addform">
-    <form action="/newssite/addnew.php" method="post">
+    <form action="/newssite/index.php?ctrl=News&act=Add" method="post">
         <label for="title">Название</label>
         <input type="text" name="title">
         <label for="descript">Новость</label>

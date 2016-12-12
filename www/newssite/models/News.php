@@ -12,21 +12,21 @@ class News extends Article{
     public static function get_news()
     {
         $db = new Sql();
-        return $db->get_from_DB('SELECT * FROM news ORDER BY date DESC');
+        return $db->get_from_DB_All('SELECT * FROM news ORDER BY date DESC');
     }
-    public function get_one_new($id)
+    public static function get_one_new($id)
     {
         $db = new Sql();
-        $this->id = $id;
-        return $db->get_from_DB('SELECT * FROM news WHERE id='.$this->id, 'News');
+        //$this->id = $id;
+        return $db->get_from_DB_One('SELECT * FROM news WHERE id='. $id, 'News');
     }
     public function add_news($title, $descript, $date)
     {
         $db = new Sql();
-        $this->title = $title;
-        $this->descript = $descript;
-        $this->date = $date;
-        return $db->put_to_DB("INSERT INTO news (title, descript, date) VALUES ('$this->title', '$this->descript', '$this->date')");
+        $title = $_POST['title'];
+        $descript = $_POST['descript'];
+        $date = $_POST['date'];
+        return $db->put_to_DB("INSERT INTO news (title, descript, date) VALUES ('$title', '$descript', '$date')");
 
     }
     public function inspect_post ($title, $descript, $date)

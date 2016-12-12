@@ -10,7 +10,7 @@ class Sql{
     {
         return $res = mysql_query($query);
     }
-    public function get_from_DB($query, $class='stdClass')
+    public function get_from_DB_All($query, $class='stdClass')
     {
         $res = mysql_query($query);
         //var_dump($res);
@@ -22,5 +22,9 @@ class Sql{
             $ret[] = $row;
         }
         return $ret;
+    }
+    public function get_from_DB_One($query, $class='stdClass')
+    {
+        return $this->get_from_DB_All($query, $class) [0];
     }
 }
