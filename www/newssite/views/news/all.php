@@ -7,12 +7,12 @@
 
 </head>
 <body>
-<?php foreach ($news as $new):?>
-    <a href="/newssite/index.php?ctrl=News&act=One&id=<?php echo $new->id ; ?>"><?php echo $new->title; ?></a>
-    <p><?php echo $new->date;  ?></p>
+<?php foreach ($data as $item):?>
+    <a href="/newssite/index.php?ctrl=News&act=One&id=<?php echo $item->id ; ?>"><?php echo $item->title; ?></a>
+    <p><?php echo $item->date;  ?></p>
 <?php endforeach; ?>
 <br>
 <br>
-<a href="/newssite/index.php?ctrl=News&act=Add">Добавить новость</a>
+<a href="/newssite/index.php?ctrl=Admin&act=AddNews">Добавить новость</a>
 </body>
 </html>

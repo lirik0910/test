@@ -14,7 +14,7 @@
 }  ?>
 <br>
 <div class="addform">
-    <form action="/newssite/index.php?ctrl=News&act=Add" method="post">
+    <form action="/newssite/index.php?ctrl=Admin&act=AddNews" method="post">
         <label for="title">Название</label>
         <input type="text" name="title">
         <label for="descript">Новость</label>
