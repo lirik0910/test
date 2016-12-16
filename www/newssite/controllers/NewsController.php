@@ -14,11 +14,12 @@ class NewsController extends AbstractController
         //var_dump($argc); die;
         $view->display($template);*/
         NewsController::give_to_view($data, $template);
+
     }
     public function actionOne()
     {
         $id = $_GET['id'];
-        $data = News::get_one($id);
+        $data = News::get_one_by_PK($id);
         //var_dump($data); die;
         $template = '/news/one.php';
         /*$view = new View($template);

@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<?php foreach ($data as $item):?>
+<?php foreach ($items as $item):?>
     <a href="/newssite/index.php?ctrl=News&act=One&id=<?php echo $item->id ; ?>"><?php echo $item->title; ?></a>
     <p><?php echo $item->date;  ?></p>
 <?php endforeach; ?>

@@ -11,9 +11,14 @@ class AdminController
         $inspect = AdminController::inspect_post($title, $descript, $date);
 
         if(false !== $inspect){
-            //var_dump($_POST); die;
-            $add_new = News::add_news($title, $descript, $date);
-            if(false !== $add_new){
+
+            $add = new News();
+            $add->data = [
+                'title' => $title,
+                'descript' => $descript,
+                'date' => $date];
+
+            if(false !== $add->insert()){
                 $_SESSION['error'] = 'Новость успешно добавлена!';
                 header('Location: /newssite/index.php?ctrl=Admin&act=AddNews');
                 exit;
@@ -23,16 +28,21 @@ class AdminController
                 exit;
             }
         }
+        Session::error_check();
+        AdminController::view_AddNews_form();
+    }
+    public static function view_AddNews_form()
+    {
         $template = '/news/form_add.php';
         $view = new View($template);
         $view->display($template);
-        //include __DIR__ . '/../views/news/form_add.php';
     }
     public static function inspect_post ($title, $descript, $date)
     {
-        if(isset($title) && isset($descript) && isset($date)){
+        if(!empty($title) && !empty($descript) && !empty($date)){
             return true;
         }
         return false;
     }
+
 }

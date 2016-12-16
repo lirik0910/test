@@ -8,10 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-<?php if (!empty($_SESSION['error'])){
-    echo $_SESSION['error'];
-    unset($_SESSION['error']);
-}  ?>
+<?php  ?>
 <br>
 <div class="addform">
     <form action="/newssite/index.php?ctrl=Admin&act=AddNews" method="post">

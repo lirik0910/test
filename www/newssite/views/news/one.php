@@ -9,9 +9,9 @@
 <?php //if(isset($items)){
     //var_dump($items); die;
     //foreach ($this->data['data'] as $item):?>
-    <h1> <?php echo $data->title ; ?> </h1>
-    <p> <?php echo $data->date; ?> </p>
-    <p> <?php echo $data->descript; ?> </p>
+    <h1> <?php echo $items->title ; ?> </h1>
+    <p> <?php echo $items->date; ?> </p>
+    <p> <?php echo $items->descript; ?> </p>
     <?php //endforeach; ?>
 <?php// } else{
     //echo 'Новость не найдена!';
