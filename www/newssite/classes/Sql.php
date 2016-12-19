@@ -24,29 +24,8 @@ class Sql{
         $sth = $this->dbh->prepare($sql);
         return $sth->execute($params);
     }
-
-    /*
-    public function put_to_DB($query, $class='stdClass')
+    public function lastInsertId()
     {
-        return $res = mysql_query($query);
+        return $this->dbh->lastInsertId();
     }
-    public function get_from_DB_All($query, $class='stdClass')
-    {
-
-        $res = mysql_query($query);
-        //var_dump($res);
-        if(false === $res){
-            return false;
-        }
-        $ret = [];
-        while($row = mysql_fetch_object($res)){
-            $ret[] = $row;
-        }
-        return $ret;
-    }
-    public function get_from_DB_One($query, $class='stdClass')
-    {
-        return $this->get_from_DB_All($query, $class) [0];
-    }
-    */
 }

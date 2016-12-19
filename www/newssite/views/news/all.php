@@ -14,5 +14,6 @@
 <br>
 <br>
 <a href="/newssite/index.php?ctrl=Admin&act=AddNews">Добавить новость</a>
+<a href="/newssite/index.php?ctrl=News&act=Find">Найти новость</a>
 </body>
 </html>
