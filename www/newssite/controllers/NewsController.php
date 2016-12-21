@@ -6,13 +6,11 @@ class NewsController extends AbstractController
 {
     public function actionAll()
     {
-        $data = News::get_all();
-        //var_dump($data); die;
+        if(false == $data = $data = News::get_all()){
+            $e404 = new E404Exception('Ошибка 404! Не найдена запрашиваемая страница');
+            throw $e404;
+        }
         $template = '/news/all.php';
-        /*$view = new View($template);
-        $view->data = $data;
-        //var_dump($argc); die;
-        $view->display($template);*/
         Session::error_check();
         NewsController::give_to_view($data, $template);
 
@@ -21,7 +19,10 @@ class NewsController extends AbstractController
     {
         $id = $_GET['id'];
         $news = new News();
-        $data = $news->get_one_by_PK($id) [0];
+        if(false == $data = $news->get_one_by_PK($id) [0]){
+            $e404 = new E404Exception('Ошибка 404! Не найдена запрашиваемая страница');
+            throw $e404;
+        }
         $template = '/news/one.php';
         Session::error_check();
         NewsController::give_to_view($data, $template);

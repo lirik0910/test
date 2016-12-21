@@ -7,7 +7,10 @@ class Sql{
 
     public function __construct()
     {
-        $this->dbh = new PDO('mysql:dbname=test; host=localhost', 'root', '');
+            if(false == $this->dbh = new PDO('mysql:dbname=test; host=localhost', 'root', '')){
+                throw $e403 = new PDOException();
+            }
+            //$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
     }
     public function set_classname($className)
     {

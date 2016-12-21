@@ -75,5 +75,10 @@ class AdminController extends AbstractController
         header('Location: /newssite/index.php');
         exit;
     }
-
+    public function actionCheckLogFile()
+    {
+        $log = new Logging();
+        $data = explode(';',$log->read());
+        AdminController::give_to_view($data, './error_log.php');
+    }
 }
