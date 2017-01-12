@@ -1,12 +1,19 @@
 <?php
 session_start();
 
+use Application\Classes\E404Exception;
+use Application\Classes\Logging;
+use Application\Classes\View;
+
 require_once __DIR__ . '/autoload.php';
 
+/*$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$pathParts = explode('/', $path);
+*/
 $ctrl = isset($_GET['ctrl']) ? $_GET['ctrl'] : 'News';
 $act = isset($_GET['act']) ? $_GET['act'] : 'All';
 
-$controllerClassName = $ctrl . 'Controller';
+$controllerClassName = 'Application\\Controllers\\' . $ctrl;
 
 //require_once __DIR__ . '/controllers/' . $controllerClassName . '.php';
 try{

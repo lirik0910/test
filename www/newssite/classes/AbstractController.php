@@ -1,5 +1,9 @@
 <?php
 
+
+
+use Application\Classes\View;
+
 abstract class abstractController
 {
     public static function give_to_view($data, $template)

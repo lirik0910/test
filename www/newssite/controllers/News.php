@@ -1,43 +1,50 @@
 <?php
-//require __DIR__ . '/../models/News.php';
+//require __DIR__ . '/../models/News_model.php';
 //require_once __DIR__ . '/../autoload.php';
+namespace Application\Controllers;
 
-class NewsController extends AbstractController
+use Application\Classes\Session;
+use Application\Classes\E404Exception;
+use Application\Models\News as NewsModel;
+use Application\Classes\View;
+
+
+class News extends \AbstractController
 {
     public function actionAll()
     {
-        if(false == $data = $data = News::get_all()){
+        if(false == $data = $data = NewsModel::get_all()){
             $e404 = new E404Exception('Ошибка 404! Не найдена запрашиваемая страница');
             throw $e404;
         }
         $template = '/news/all.php';
         Session::error_check();
-        NewsController::give_to_view($data, $template);
+        News::give_to_view($data, $template);
 
     }
     public function actionOne()
     {
         $id = $_GET['id'];
-        $news = new News();
+        $news = new NewsModel();
         if(false == $data = $news->get_one_by_PK($id) [0]){
             $e404 = new E404Exception('Ошибка 404! Не найдена запрашиваемая страница');
             throw $e404;
         }
         $template = '/news/one.php';
         Session::error_check();
-        NewsController::give_to_view($data, $template);
+        News::give_to_view($data, $template);
 
     }
     public function actionFind()
     {
-        $data = News::get_all() [0];
+        $data = NewsModel::get_all() [0];
 
         $template_form = '/news/findform.php';
         $template_view = '/news/Findnews.php';
         $view = new View();
-        $view->cols = News::get_columns($data);
+        $view->cols = NewsModel::get_columns($data);
 
-        $news = new News();
+        $news = new NewsModel();
 
         if(!empty($_POST['value'])){
             switch ($_POST['column']){
@@ -73,7 +80,5 @@ class NewsController extends AbstractController
         }
         Session::error_check();
         $view->display($template_form);
-
     }
-
 }

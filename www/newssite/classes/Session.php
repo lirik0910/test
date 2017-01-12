@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Classes;
+
 class Session
 {
     public static function error_check()

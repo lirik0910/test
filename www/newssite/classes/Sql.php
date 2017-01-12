@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Classes;
+
 class Sql{
 
     private $dbh;
@@ -7,8 +9,8 @@ class Sql{
 
     public function __construct()
     {
-            if(false == $this->dbh = new PDO('mysql:dbname=test; host=localhost', 'root', '')){
-                throw $e403 = new PDOException();
+            if(false == $this->dbh = new \PDO('mysql:dbname=test; host=localhost', 'root', '')){
+                throw $e403 = new \PDOException();
             }
             //$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
     }
@@ -20,7 +22,7 @@ class Sql{
     {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($params);
-        return $sth->fetchAll(PDO::FETCH_CLASS, $this->className);
+        return $sth->fetchAll(\PDO::FETCH_CLASS, $this->className);
     }
     public function execute($sql, $params = [])
     {

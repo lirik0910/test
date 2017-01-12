@@ -1,14 +1,22 @@
 <?php
 
-class AdminController extends AbstractController
+namespace Application\Controllers;
+
+use Application\Models\News as NewsModel;
+use Application\Classes\Session;
+use Application\Classes\Logging;
+use Application\Classes\View;
+use PHPMailer\PHPMailer\PHPMailer;
+
+class Admin extends \AbstractController
 {
     public function actionAddNews ()
     {
-        $inspect = AdminController::inspect_post($_POST['title'], $_POST['descript'], $_POST['date']);
+        $inspect = Admin::inspect_post($_POST['title'], $_POST['descript'], $_POST['date']);
 
         if(false !== $inspect){
 
-            $add = new News();
+            $add = new NewsModel();
             $add->data = [
                 'title' => $_POST['title'],
                 'descript' => $_POST['descript'],
@@ -25,7 +33,7 @@ class AdminController extends AbstractController
             }
         }
         Session::error_check();
-        AdminController::view_AddNews_form();
+        Admin::view_AddNews_form();
     }
     public static function view_AddNews_form()
     {
@@ -44,7 +52,7 @@ class AdminController extends AbstractController
     {
         if(!empty($_POST['title']) && !empty($_POST['descript'])){
 
-                $upd = new News();
+                $upd = new NewsModel();
                 $upd->id = $_GET['id'];
                 $upd->data=['title' => $_POST['title'],
                             'descript' => $_POST['descript']];
@@ -68,7 +76,7 @@ class AdminController extends AbstractController
     }
     public function actionDelete ()
     {
-        $del = new News();
+        $del = new NewsModel();
         $del->id = $_GET['id'];
         $del->delete();
         $_SESSION['error'] ='Новость успешно удалена!';
@@ -79,6 +87,41 @@ class AdminController extends AbstractController
     {
         $log = new Logging();
         $data = explode(';',$log->read());
-        AdminController::give_to_view($data, './error_log.php');
+        Admin::give_to_view($data, './error_log.php');
+    }
+    public function actionSendMail()
+    {
+        $mail =  new PHPMailer();
+        //$mail->isSMTP();
+
+        //$mail->Host = 'test.local';
+        //$mail->SMTPAuth = true;                               // Enable SMTP authentication
+        //$mail->Username = 'lirik-vagabund@yandex.ru';                 // SMTP username
+        //$mail->Password = 't,fnmtujdhjn';                           // SMTP password
+        //$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        //$mail->Port = 587;                                    // TCP port to connect to
+
+        $mail->setFrom('lirik-vagabund@yandex.ru');
+        $mail->addAddress('vanyalirik@yandex.ru');     // Add a recipient
+        //$mail->addReplyTo('vanyalirik@yandex.ru', 'Information');
+        $mail->addCC('vanyalirik@yandex.ru');
+       // $mail->addBCC('bcc@example.com');
+
+        //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+        //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+        //$mail->isHTML(true);                                  // Set email format to HTML
+
+        $mail->Subject = 'Here is the subject';
+        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
+        }
+
+
+
     }
 }

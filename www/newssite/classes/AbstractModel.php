@@ -1,5 +1,7 @@
 <?php
 
+use Application\Classes\Sql;
+
 abstract class AbstractModel
 {
     protected static $table;

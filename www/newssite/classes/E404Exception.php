@@ -1,8 +1,11 @@
 <?php
 
+namespace Application\Classes;
+
+//use Application\Classes\View;
 
 class E404Exception
-    extends Exception
+    extends \Exception
 {
     //public $message;
 

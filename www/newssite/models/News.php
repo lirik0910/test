@@ -1,7 +1,11 @@
 <?php
 //require __DIR__ . '/../classes/Sql.php';
 
-class News extends AbstractModel {
+namespace Application\Models;
+
+
+
+class News extends \AbstractModel {
 
     public $title;
     public $descript;

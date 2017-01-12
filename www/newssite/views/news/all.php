@@ -18,5 +18,6 @@
 <br>
 <br>
 <a href="/newssite/index.php?ctrl=Admin&act=CheckLogFile">Посмотреть логи ошибок</a>
+<a href="/newssite/index.php?ctrl=Admin&act=SendMail">Отправить письмо</a>
 </body>
 </html>

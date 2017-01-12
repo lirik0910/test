@@ -1,5 +1,7 @@
 <?php
 
+namespace Application\Classes;
+
 class Logging
 {
     private $date;
